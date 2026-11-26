@@ -1,0 +1,25 @@
+[Unit]
+Description=Shoucheng Assistant (首程助手)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=shoucheng
+Group=shoucheng
+WorkingDirectory=/opt/shoucheng
+ExecStart=/usr/bin/node /opt/shoucheng/server.js
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+MemoryMax=512M
+
+# 安全加固
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/opt/shoucheng
+
+[Install]
+WantedBy=multi-user.target
